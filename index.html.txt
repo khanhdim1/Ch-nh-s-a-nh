@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thư viện hình ảnh + Chỉnh sửa nhanh</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Thư viện hình ảnh</h1>
+    <div class="actions">
+      <input id="search" type="search" placeholder="Tìm theo mô tả ảnh..." />
+      <button id="resetFilters" title="Xóa bộ lọc">Xóa lọc</button>
+    </div>
+  </header>
+
+  <!-- Khu vực kéo-thả / tải ảnh lên -->
+  <section class="uploader">
+    <label for="fileInput" class="upload-label">
+      <strong>Kéo & thả</strong> ảnh vào đây hoặc <u>chọn file</u>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden />
+    </label>
+    <p class="hint">Hỗ trợ JPG/PNG/WebP. Ảnh sẽ thêm vào thư viện và có thể chỉnh sửa.</p>
+  </section>
+
+  <!-- Thư viện ảnh -->
+  <main class="gallery" id="gallery" aria-live="polite">
+    <!-- Ảnh mẫu: dùng Picsum -->
+    <figure class="card" data-label="thiên nhiên rừng núi">
+      <img loading="lazy" src="https://picsum.photos/id/1018/800/600" alt="Cảnh rừng núi" />
+      <figcaption>Rừng núi</figcaption>
+    </figure>
+
+    <figure class="card" data-label="biển hoàng hôn">
+      <img loading="lazy" src="https://picsum.photos/id/1015/800/600" alt="Biển lúc hoàng hôn" />
+      <figcaption>Biển hoàng hôn</figcaption>
+    </figure>
+
+    <figure class="card" data-label="thành phố đêm">
+      <img loading="lazy" src="https://picsum.photos/id/1011/800/600" alt="Thành phố về đêm" />
+      <figcaption>Thành phố đêm</figcaption>
+    </figure>
+
+    <figure class="card" data-label="hoa lá macro">
+      <img loading="lazy" src="https://picsum.photos/id/102/800/600" alt="Hoa lá cận cảnh" />
+      <figcaption>Hoa lá</figcaption>
+    </figure>
+
+    <figure class="card" data-label="sa mạc đường chân trời">
+      <img loading="lazy" src="https://picsum.photos/id/1002/800/600" alt="Sa mạc" />
+      <figcaption>Sa mạc</figcaption>
+    </figure>
+
+    <figure class="card" data-label="núi tuyết bình minh">
+      <img loading="lazy" src="https://picsum.photos/id/1003/800/600" alt="Núi tuyết" />
+      <figcaption>Núi tuyết</figcaption>
+    </figure>
+  </main>
+
+  <!-- Lightbox xem ảnh lớn -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="btn close" id="lbClose" aria-label="Đóng">×</button>
+    <button class="btn prev" id="lbPrev" aria-label="Ảnh trước">‹</button>
+    <img id="lbImg" alt="" />
+    <button class="btn next" id="lbNext" aria-label="Ảnh sau">›</button>
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+
+  <!-- Trình chỉnh sửa ảnh đơn giản -->
+  <section class="editor">
+    <h2>Chỉnh sửa nhanh</h2>
+    <div class="editor-row">
+      <label>Chọn ảnh để chỉnh (bấm vào ảnh trong thư viện)</label>
+      <canvas id="canvas" width="800" height="600" aria-label="Vùng chỉnh sửa ảnh"></canvas>
+    </div>
+
+    <div class="controls">
+      <div class="control">
+        <label for="grayscale">Đen trắng</label>
+        <input id="grayscale" type="range" min="0" max="100" value="0" />
+      </div>
+      <div class="control">
+        <label for="sepia">Sepia</label>
+        <input id="sepia" type="range" min="0" max="100" value="0" />
+      </div>
+      <div class="control">
+        <label for="brightness">Độ sáng</label>
+        <input id="brightness" type="range" min="50" max="200" value="100" />
+      </div>
+      <div class="control">
+        <label for="blur">Độ mờ (px)</label>
+        <input id="blur" type="range" min="0" max="10" value="0" />
+      </div>
+    </div>
+
+    <div class="editor-actions">
+      <button id="resetEdits">Đặt lại</button>
+      <button id="download">Tải ảnh đã chỉnh</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <small>Made with ♥ — chạy thuần HTML/CSS/JS</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
